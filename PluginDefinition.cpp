@@ -58,9 +58,27 @@ ShaderPlugin::ShaderPlugin()
     m_resolutionLocation = -1;
 
     m_parameters.push_back(Parameter("FieldOfView", 0.1, 10.0, 1.0));
-    m_parameters.push_back(Parameter("Iterations", 1, 30.0, 4));
-    m_parameters.push_back(Parameter("Scale", 0.0, 10.0, 3.0));
-    m_parameters.push_back(Parameter("Speed", -2.0, 2.0, 1.0));
+    m_parameters.push_back(Parameter("Iterations", 1, 30.0, 7));
+    m_parameters.push_back(Parameter("Scale", 1.0, 10.0, 3.0));
+    m_parameters.push_back(Parameter("ZoomSpeed", -2.0, 2.0, 0.5));
+    m_parameters.push_back(Parameter("NonLinearPerspective", -10.0, 10.0, 2.0));
+    m_parameters.push_back(Parameter("NLPOnly", 0.0, 1.0, 0.0));
+    m_parameters.push_back(Parameter("OffsetX", 0.0, 1.0, 0.5));
+    m_parameters.push_back(Parameter("OffsetY", 0.0, 1.0, 0.5));
+    m_parameters.push_back(Parameter("OffsetZ", 0.0, 1.0, 0.5));
+    m_parameters.push_back(Parameter("Color1R", 0.0, 1.0, 1.0));
+    m_parameters.push_back(Parameter("Color1G", 0.0, 1.0, 1.0));
+    m_parameters.push_back(Parameter("Color1B", 0.0, 1.0, 0.858824));
+    m_parameters.push_back(Parameter("Color2R", 0.0, 1.0, 0.0));
+    m_parameters.push_back(Parameter("Color2G", 0.0, 1.0, 0.333333));
+    m_parameters.push_back(Parameter("Color2B", 0.0, 1.0, 1.0));
+    m_parameters.push_back(Parameter("Ambient", 0.0, 1.0, 0.32184));
+    m_parameters.push_back(Parameter("Diffuse", 0.0, 1.0, 0.7));
+    m_parameters.push_back(Parameter("Jitter", 0.0, 0.2, 0.05));
+    m_parameters.push_back(Parameter("IterationRotation", -10.0, 10.0, 4.0));
+    m_parameters.push_back(Parameter("IterationRotationLFO", -1.0, 1.0, 0.125));
+    m_parameters.push_back(Parameter("IterationRotationLFOIntensity", 0.0, 10.0, 2.0));
+    m_parameters.push_back(Parameter("NLPRotationLFO", -1.0, 1.0, 0.25));
 
     for (int ii = 0; ii < m_parameters.size(); ii++) {
         auto p = m_parameters[ii];
@@ -123,14 +141,14 @@ DWORD ShaderPlugin::ProcessOpenGL(ProcessOpenGLStruct *pGL) {
     m_extensions.glUniform3fvARB(m_resolutionLocation, 3, m_resolution);
         
 	glBegin(GL_QUADS);
-    m_extensions.glMultiTexCoord2f(GL_TEXTURE0, 0, 0);
-	glVertex3f(-1,-1,1);
-    m_extensions.glMultiTexCoord2f(GL_TEXTURE0, 0, m_resolution[1]);
-	glVertex3f(-1,1,1);
-    m_extensions.glMultiTexCoord2f(GL_TEXTURE0, m_resolution[0], m_resolution[1]);
-	glVertex3f(1,1,1);
-    m_extensions.glMultiTexCoord2f(GL_TEXTURE0, m_resolution[0], 0);
-	glVertex3f(1,-1,1);
+    //m_extensions.glMultiTexCoord2f(GL_TEXTURE0, 0, 0);
+	glVertex4f(-1, -1, 0, 1);
+    //m_extensions.glMultiTexCoord2f(GL_TEXTURE0, 0, m_resolution[1]);
+	glVertex4f(-1, 1, 0, 1);
+    //m_extensions.glMultiTexCoord2f(GL_TEXTURE0, m_resolution[0], m_resolution[1]);
+	glVertex4f(1, 1, 0, 1);
+    //m_extensions.glMultiTexCoord2f(GL_TEXTURE0, m_resolution[0], 0);
+	glVertex4f(1, -1, 0, 1);
 	glEnd();
   
     m_shader.UnbindShader();
@@ -154,7 +172,7 @@ DWORD ShaderPlugin::GetParameter(DWORD dwIndex)
 DWORD ShaderPlugin::SetParameter(const SetParameterStruct* pParam)
 {
     if (pParam != NULL && pParam->ParameterNumber < m_parameters.size()) {
-        auto p = m_parameters[pParam->ParameterNumber];
+        auto& p = m_parameters[pParam->ParameterNumber];
         p.Value = *((float *)(unsigned)&(pParam->NewParameterValue));
         return FF_SUCCESS;
     } else {

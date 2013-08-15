@@ -12,26 +12,54 @@ uniform float FieldOfView;
 uniform float Iterations;
 uniform float Scale;
 uniform float Speed;
+uniform float IterationRotation;
+uniform float IterationRotationLFO;
+uniform float IterationRotationLFOIntensity;
+uniform float NLPRotationLFO;
+
+uniform float NonLinearPerspective;
+uniform float NLPOnly;
+
+uniform float OffsetX;
+uniform float OffsetY;
+uniform float OffsetZ;
+
+uniform float Color1R;
+uniform float Color1G;
+uniform float Color1B;
+uniform float Color2R;
+uniform float Color2G;
+uniform float Color2B;
+
+uniform float Ambient;
+uniform float Diffuse;
+uniform float Jitter;
+
+//#define FieldOfView 1.0
+//#define Iterations 7
+//#define Scale 3.0
+//#define Speed 1.0
 
 #define MaxSteps 30
 #define MinimumDistance 0.0009
 #define normalDistance     0.0002
 
 #define PI 3.141592
-#define Jitter 0.15
+//#define Jitter 0.05
 #define FudgeFactor 0.7
-#define NonLinearPerspective 2.0
-#define DebugNonlinearPerspective false
+//#define NonLinearPerspective 2.0
+//#define DebugNonlinearPerspective true
 
-#define Ambient 0.32184
-#define Diffuse 0.7
+//#define Ambient 0.32184
+//#define Diffuse 0.7
 #define LightDir vec3(1.0)
-#define LightColor vec3(1.0,1.0,0.858824)
+#define LightColor vec3(Color1R, Color1G, Color1B)
 #define LightDir2 vec3(1.0,-1.0,1.0)
-#define LightColor2 vec3(0.0,0.333333,1.0)
-vec3 Offset = vec3(0.92858 * Speed,
-				   0.92858 * Speed,
-				   0.32858 * Speed);
+#define LightColor2 vec3(Color2R, Color2G, Color2B)
+
+vec3 Offset = vec3(0.92858 + (OffsetX - 0.5) * 1.0,
+				   0.92858 + (OffsetY - 0.5) * 1.0,
+				   0.32858 + (OffsetZ - 0.5) * 1.0);
 
 vec2 rotate(vec2 v, float a) {
 	return vec2(cos(a)*v.x + sin(a)*v.y, -sin(a)*v.x + cos(a)*v.y);
@@ -58,7 +86,7 @@ vec3 getLight(in vec3 color, in vec3 normal, in vec3 dir) {
 float DE(in vec3 z)
 {
 	// enable this to debug the non-linear perspective
-	if (DebugNonlinearPerspective) {
+	if (NLPOnly == 1.0) {
 		z = fract(z);
 		float d=length(z.xy-vec2(0.5));
 		d = min(d, length(z.xz-vec2(0.5)));
@@ -70,7 +98,7 @@ float DE(in vec3 z)
 
 	float d = 1000.0;
 	for (int n = 0; n < int(Iterations); n++) {
-		z.xy = rotate(z.xy,4.0+2.0*cos( iGlobalTime/8.0));		
+		z.xy = rotate(z.xy, IterationRotation + IterationRotationLFOIntensity * cos(iGlobalTime * IterationRotationLFO));		
 		z = abs(z);
 		if (z.x<z.y){ z.xy = z.yx;}
 		if (z.x< z.z){ z.xz = z.zx;}
@@ -116,7 +144,7 @@ vec4 rayMarch(in vec3 from, in vec3 dir) {
 	vec3 pos;
 	for (int i=0; i < MaxSteps; i++) {
 		// Non-linear perspective applied here.
-		dir.zy = rotate(dir2.zy,totalDistance*cos( iGlobalTime/4.0)*NonLinearPerspective);
+		dir.zy = rotate(dir2.zy, totalDistance * cos(iGlobalTime * NLPRotationLFO) * NonLinearPerspective);
 		
 		pos = from + totalDistance * dir;
 		distance = DE(pos)*FudgeFactor;
@@ -143,7 +171,7 @@ vec4 rayMarch(in vec3 from, in vec3 dir) {
 void main(void)
 {
 	// Camera position (eye), and camera target
-	vec3 camPos = 0.5 * iGlobalTime * vec3(1.0,0.0,0.0);
+	vec3 camPos = Speed * iGlobalTime * vec3(1.0,0.0,0.0);
 	vec3 target = camPos + vec3(1.0,0.0*cos(iGlobalTime),0.0*sin(0.4*iGlobalTime));
 	vec3 camUp  = vec3(0.0,1.0,0.0);
 	
