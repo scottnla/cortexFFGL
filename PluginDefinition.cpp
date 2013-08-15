@@ -76,8 +76,11 @@ DWORD ShaderPlugin::InitGL(const FFGLViewportStruct *vp)
  
     m_shader.BindShader();
     
-    for (auto p : m_parameters) {
+    for (auto& p : m_parameters) {
         p.UniformLocation = m_shader.FindUniform(p.Name.c_str());
+        if (p.UniformLocation < 0) {
+            fprintf(stderr, "Could not locate uniform %s in shader!", p.Name.c_str());
+        }
     }
     
     m_timeLocation = m_shader.FindUniform("iGlobalTime");
@@ -104,8 +107,8 @@ DWORD ShaderPlugin::ProcessOpenGL(ProcessOpenGLStruct *pGL) {
     
     m_shader.BindShader();
     
-    for (auto p : m_parameters) {
-        m_extensions.glUniform1fARB(p.UniformLocation, p.Value);
+    for (auto& p : m_parameters) {
+        m_extensions.glUniform1fARB(p.UniformLocation, p.GetScaledValue());
     }
     
     if (!m_HostSupportsSetTime)

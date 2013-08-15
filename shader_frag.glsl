@@ -8,8 +8,8 @@ uniform float     iGlobalTime;           // shader playback time (in seconds)
 //uniform samplerXX iChannel0..3;          // input channel. XX = 2D/Cube
 //uniform vec4      iDate;                 // (year, month, day, time in seconds)
 
-//uniform float FieldOfView;
-#define FieldOfView 1.0
+uniform float FieldOfView;
+//#define FieldOfView 1.0
 
 #define MaxSteps 30
 #define MinimumDistance 0.0009

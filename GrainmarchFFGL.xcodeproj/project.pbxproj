@@ -16,11 +16,6 @@
 		5B07B66016F2ED7900AD1A46 /* FFGLPluginManager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5B07B5EC16F2ED7800AD1A46 /* FFGLPluginManager.cpp */; };
 		5B07B66116F2ED7900AD1A46 /* FFGLPluginSDK.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5B07B5EF16F2ED7800AD1A46 /* FFGLPluginSDK.cpp */; };
 		5B0FCE8B1793D806004E2E35 /* PluginDefinition.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5B0FCE891793D806004E2E35 /* PluginDefinition.cpp */; };
-		5B0FCEB317950D76004E2E35 /* mat3.c in Sources */ = {isa = PBXBuildFile; fileRef = 5B0FCEAB17950D76004E2E35 /* mat3.c */; };
-		5B0FCEB417950D76004E2E35 /* mat4.c in Sources */ = {isa = PBXBuildFile; fileRef = 5B0FCEAC17950D76004E2E35 /* mat4.c */; };
-		5B0FCEB517950D76004E2E35 /* quat.c in Sources */ = {isa = PBXBuildFile; fileRef = 5B0FCEAD17950D76004E2E35 /* quat.c */; };
-		5B0FCEB717950D76004E2E35 /* str.c in Sources */ = {isa = PBXBuildFile; fileRef = 5B0FCEAF17950D76004E2E35 /* str.c */; };
-		5B0FCEB817950D76004E2E35 /* vec3.c in Sources */ = {isa = PBXBuildFile; fileRef = 5B0FCEB017950D76004E2E35 /* vec3.c */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -48,13 +43,7 @@
 		5B0FCE8A1793D806004E2E35 /* PluginDefinition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PluginDefinition.h; sourceTree = "<group>"; };
 		5B0FCE8D1793DCEC004E2E35 /* shader_vert.glsl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = shader_vert.glsl; sourceTree = "<group>"; };
 		5B0FCE911793DE3E004E2E35 /* shader_frag.glsl */ = {isa = PBXFileReference; lastKnownFileType = text; path = shader_frag.glsl; sourceTree = "<group>"; };
-		5B0FCEA817950D76004E2E35 /* gl-matrix.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "gl-matrix.h"; sourceTree = "<group>"; };
-		5B0FCEAB17950D76004E2E35 /* mat3.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = mat3.c; sourceTree = "<group>"; };
-		5B0FCEAC17950D76004E2E35 /* mat4.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = mat4.c; sourceTree = "<group>"; };
-		5B0FCEAD17950D76004E2E35 /* quat.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = quat.c; sourceTree = "<group>"; };
-		5B0FCEAF17950D76004E2E35 /* str.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = str.c; sourceTree = "<group>"; };
-		5B0FCEB017950D76004E2E35 /* vec3.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = vec3.c; sourceTree = "<group>"; };
-		5B1201351796283700AB518D /* PoincareFFGL_debug.bundle */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PoincareFFGL_debug.bundle; sourceTree = BUILT_PRODUCTS_DIR; };
+		5B1201351796283700AB518D /* PoincareFFGL_debug.bundle */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; name = PoincareFFGL_debug.bundle; path = GrainmarchFFGL_debug.bundle; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -76,7 +65,6 @@
 				5B0FCE891793D806004E2E35 /* PluginDefinition.cpp */,
 				5B0FCE8A1793D806004E2E35 /* PluginDefinition.h */,
 				5B07B55216F2ED7800AD1A46 /* FFGLSDK_1_5 */,
-				5B0FCEA717950D76004E2E35 /* gl-matrix */,
 				2DA287A70AEEFE950030A4DD /* OpenGL.framework */,
 				2D2190970AF02BD1007154B7 /* GrainmarchFFGL-Info.plist */,
 				5B1201351796283700AB518D /* PoincareFFGL_debug.bundle */,
@@ -138,19 +126,6 @@
 				5B07B5F016F2ED7800AD1A46 /* FFGLPluginSDK.h */,
 			);
 			path = FFGLPlugins;
-			sourceTree = "<group>";
-		};
-		5B0FCEA717950D76004E2E35 /* gl-matrix */ = {
-			isa = PBXGroup;
-			children = (
-				5B0FCEA817950D76004E2E35 /* gl-matrix.h */,
-				5B0FCEAB17950D76004E2E35 /* mat3.c */,
-				5B0FCEAC17950D76004E2E35 /* mat4.c */,
-				5B0FCEAD17950D76004E2E35 /* quat.c */,
-				5B0FCEAF17950D76004E2E35 /* str.c */,
-				5B0FCEB017950D76004E2E35 /* vec3.c */,
-			);
-			path = "gl-matrix";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -222,11 +197,6 @@
 				5B07B66016F2ED7900AD1A46 /* FFGLPluginManager.cpp in Sources */,
 				5B07B66116F2ED7900AD1A46 /* FFGLPluginSDK.cpp in Sources */,
 				5B0FCE8B1793D806004E2E35 /* PluginDefinition.cpp in Sources */,
-				5B0FCEB317950D76004E2E35 /* mat3.c in Sources */,
-				5B0FCEB417950D76004E2E35 /* mat4.c in Sources */,
-				5B0FCEB517950D76004E2E35 /* quat.c in Sources */,
-				5B0FCEB717950D76004E2E35 /* str.c in Sources */,
-				5B0FCEB817950D76004E2E35 /* vec3.c in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
