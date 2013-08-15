@@ -58,6 +58,9 @@ ShaderPlugin::ShaderPlugin()
     m_resolutionLocation = -1;
 
     m_parameters.push_back(Parameter("FieldOfView", 0.1, 10.0, 1.0));
+    m_parameters.push_back(Parameter("Iterations", 1, 30.0, 4));
+    m_parameters.push_back(Parameter("Scale", 0.0, 10.0, 3.0));
+    m_parameters.push_back(Parameter("Speed", -2.0, 2.0, 1.0));
 
     for (int ii = 0; ii < m_parameters.size(); ii++) {
         auto p = m_parameters[ii];

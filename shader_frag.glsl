@@ -9,15 +9,15 @@ uniform float     iGlobalTime;           // shader playback time (in seconds)
 //uniform vec4      iDate;                 // (year, month, day, time in seconds)
 
 uniform float FieldOfView;
-//#define FieldOfView 1.0
+uniform float Iterations;
+uniform float Scale;
+uniform float Speed;
 
 #define MaxSteps 30
 #define MinimumDistance 0.0009
 #define normalDistance     0.0002
 
-#define Iterations 4
 #define PI 3.141592
-#define Scale 5.0
 #define Jitter 0.15
 #define FudgeFactor 0.7
 #define NonLinearPerspective 2.0
@@ -29,9 +29,9 @@ uniform float FieldOfView;
 #define LightColor vec3(1.0,1.0,0.858824)
 #define LightDir2 vec3(1.0,-1.0,1.0)
 #define LightColor2 vec3(0.0,0.333333,1.0)
-vec3 Offset = vec3(0.92858,
-				   0.92858,
-				   0.32858);
+vec3 Offset = vec3(0.92858 * Speed,
+				   0.92858 * Speed,
+				   0.32858 * Speed);
 
 vec2 rotate(vec2 v, float a) {
 	return vec2(cos(a)*v.x + sin(a)*v.y, -sin(a)*v.x + cos(a)*v.y);
@@ -69,7 +69,7 @@ float DE(in vec3 z)
 	z  = abs(1.0-mod(z,2.0));
 
 	float d = 1000.0;
-	for (int n = 0; n < Iterations; n++) {
+	for (int n = 0; n < int(Iterations); n++) {
 		z.xy = rotate(z.xy,4.0+2.0*cos( iGlobalTime/8.0));		
 		z = abs(z);
 		if (z.x<z.y){ z.xy = z.yx;}
@@ -143,7 +143,7 @@ vec4 rayMarch(in vec3 from, in vec3 dir) {
 void main(void)
 {
 	// Camera position (eye), and camera target
-	vec3 camPos = 0.5*iGlobalTime*vec3(1.0,0.0,0.0);
+	vec3 camPos = 0.5 * iGlobalTime * vec3(1.0,0.0,0.0);
 	vec3 target = camPos + vec3(1.0,0.0*cos(iGlobalTime),0.0*sin(0.4*iGlobalTime));
 	vec3 camUp  = vec3(0.0,1.0,0.0);
 	
@@ -162,8 +162,6 @@ void main(void)
 	vec3 rayDir = normalize(camDir + (coord.x*camRight + coord.y*camUp)*FieldOfView);
 	
 	gl_FragColor = rayMarch(camPos, rayDir);
-    //gl_FragColor = vec4(1.0, 0.0, 0.0, 1.0);
-    //gl_FragColor = vec4(1.0 - coord.x, coord.x + coord.y / 2.0, coord.x, 1.0);
 }
 
 
