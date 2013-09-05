@@ -19,7 +19,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		2D2190970AF02BD1007154B7 /* GrainmarchFFGL-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "GrainmarchFFGL-Info.plist"; sourceTree = "<group>"; };
+		2D2190970AF02BD1007154B7 /* cortexFFGL-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "cortexFFGL-Info.plist"; sourceTree = "<group>"; };
 		2DA287A70AEEFE950030A4DD /* OpenGL.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGL.framework; path = /System/Library/Frameworks/OpenGL.framework; sourceTree = "<absolute>"; };
 		5B07B56D16F2ED7800AD1A46 /* FFGL.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FFGL.h; sourceTree = "<group>"; };
 		5B07B56E16F2ED7800AD1A46 /* FFGLExtensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FFGLExtensions.h; sourceTree = "<group>"; };
@@ -43,7 +43,7 @@
 		5B0FCE8A1793D806004E2E35 /* PluginDefinition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PluginDefinition.h; sourceTree = "<group>"; };
 		5B0FCE8D1793DCEC004E2E35 /* shader_vert.glsl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = shader_vert.glsl; sourceTree = "<group>"; };
 		5B0FCE911793DE3E004E2E35 /* shader_frag.glsl */ = {isa = PBXFileReference; lastKnownFileType = text; path = shader_frag.glsl; sourceTree = "<group>"; };
-		5B1201351796283700AB518D /* PoincareFFGL_debug.bundle */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; name = PoincareFFGL_debug.bundle; path = GrainmarchFFGL_debug.bundle; sourceTree = BUILT_PRODUCTS_DIR; };
+		5B1201351796283700AB518D /* cortexFFGL_debug.bundle */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = cortexFFGL_debug.bundle; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -66,8 +66,8 @@
 				5B0FCE8A1793D806004E2E35 /* PluginDefinition.h */,
 				5B07B55216F2ED7800AD1A46 /* FFGLSDK_1_5 */,
 				2DA287A70AEEFE950030A4DD /* OpenGL.framework */,
-				2D2190970AF02BD1007154B7 /* GrainmarchFFGL-Info.plist */,
-				5B1201351796283700AB518D /* PoincareFFGL_debug.bundle */,
+				2D2190970AF02BD1007154B7 /* cortexFFGL-Info.plist */,
+				5B1201351796283700AB518D /* cortexFFGL_debug.bundle */,
 			);
 			sourceTree = "<group>";
 		};
@@ -131,9 +131,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		2D2190890AF02BD1007154B7 /* GrainmarchFFGL */ = {
+		2D2190890AF02BD1007154B7 /* cortexFFGL */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 2D2190930AF02BD1007154B7 /* Build configuration list for PBXNativeTarget "GrainmarchFFGL" */;
+			buildConfigurationList = 2D2190930AF02BD1007154B7 /* Build configuration list for PBXNativeTarget "cortexFFGL" */;
 			buildPhases = (
 				2D21908A0AF02BD1007154B7 /* Resources */,
 				2D21908B0AF02BD1007154B7 /* Sources */,
@@ -143,9 +143,9 @@
 			);
 			dependencies = (
 			);
-			name = GrainmarchFFGL;
+			name = cortexFFGL;
 			productName = FFGLBrightness;
-			productReference = 5B1201351796283700AB518D /* PoincareFFGL_debug.bundle */;
+			productReference = 5B1201351796283700AB518D /* cortexFFGL_debug.bundle */;
 			productType = "com.apple.product-type.bundle";
 		};
 /* End PBXNativeTarget section */
@@ -156,7 +156,7 @@
 			attributes = {
 				LastUpgradeCheck = 0450;
 			};
-			buildConfigurationList = 2DA285940AEE5D640030A4DD /* Build configuration list for PBXProject "GrainmarchFFGL" */;
+			buildConfigurationList = 2DA285940AEE5D640030A4DD /* Build configuration list for PBXProject "cortexFFGL" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
@@ -168,7 +168,7 @@
 			projectDirPath = "";
 			projectRoot = ../../..;
 			targets = (
-				2D2190890AF02BD1007154B7 /* GrainmarchFFGL */,
+				2D2190890AF02BD1007154B7 /* cortexFFGL */,
 			);
 		};
 /* End PBXProject section */
@@ -226,14 +226,14 @@
 					"$(SRCROOT)/FFGLSDK_1_5/Source/FFGLPlugins",
 					"$(SRCROOT)/FFGLSDK_1_5/Include",
 				);
-				INFOPLIST_FILE = "GrainmarchFFGL-Info.plist";
+				INFOPLIST_FILE = "cortexFFGL-Info.plist";
 				INSTALL_PATH = "$(HOME)/Library/Bundles";
 				MACOSX_DEPLOYMENT_TARGET = "";
 				OTHER_LDFLAGS = (
 					"-framework",
 					OpenGL,
 				);
-				PRODUCT_NAME = GrainmarchFFGL_debug;
+				PRODUCT_NAME = cortexFFGL_debug;
 				SDKROOT = macosx;
 				WRAPPER_EXTENSION = bundle;
 				ZERO_LINK = NO;
@@ -259,14 +259,14 @@
 					"$(SRCROOT)/FFGLSDK_1_5/Include",
 					"$(SRCROOT)/gl-matrix",
 				);
-				INFOPLIST_FILE = "GrainmarchFFGL-Info.plist";
+				INFOPLIST_FILE = "cortexFFGL-Info.plist";
 				INSTALL_PATH = "$(HOME)/Library/Bundles";
 				MACOSX_DEPLOYMENT_TARGET = "";
 				OTHER_LDFLAGS = (
 					"-framework",
 					OpenGL,
 				);
-				PRODUCT_NAME = GrainmarchFFGL;
+				PRODUCT_NAME = cortexFFGL;
 				SDKROOT = macosx;
 				WRAPPER_EXTENSION = bundle;
 				ZERO_LINK = NO;
@@ -302,7 +302,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		2D2190930AF02BD1007154B7 /* Build configuration list for PBXNativeTarget "GrainmarchFFGL" */ = {
+		2D2190930AF02BD1007154B7 /* Build configuration list for PBXNativeTarget "cortexFFGL" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				2D2190940AF02BD1007154B7 /* Debug */,
@@ -311,7 +311,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		2DA285940AEE5D640030A4DD /* Build configuration list for PBXProject "GrainmarchFFGL" */ = {
+		2DA285940AEE5D640030A4DD /* Build configuration list for PBXProject "cortexFFGL" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				2DA285950AEE5D640030A4DD /* Debug */,

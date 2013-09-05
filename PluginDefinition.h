@@ -7,8 +7,6 @@
 
 using namespace std;
 
-#define NUM_PARAMETERS 2
-
 class Parameter {
 public:
     Parameter(string name, float min, float max, float value);
