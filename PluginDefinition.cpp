@@ -25,14 +25,14 @@ float Parameter::GetScaledValue() const {
 static CFFGLPluginInfo PluginInfo ( 
 	ShaderPlugin::CreateInstance,	// Create method
                                    "CORTEX",								// Plugin unique ID
-                                   "Cortex",					// Plugin name
+                                   "cortex",					// Plugin name
                                    1,						   			// API major version number
                                    500,								  // API minor version number
                                    0,										// Plugin major version number
                                    002,									// Plugin minor version number
                                    FF_SOURCE,						// Plugin type
                                    "Visual form constant synthesizer",	// Plugin description
-                                   "by Nathan Lachenmyer" // About
+                                   "by Nathan Lachenmyer (morphogen)" // About
 );
 
 
