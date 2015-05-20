@@ -25,9 +25,9 @@ public:
 
 private:
   FFGLExtensions *m_extensions;
-  GLenum m_glProgram;
-  GLenum m_glVertexShader;
-  GLenum m_glFragmentShader;
+  GLhandleARB m_glProgram;
+  GLhandleARB m_glVertexShader;
+  GLhandleARB m_glFragmentShader;
   GLuint m_linkStatus;
   
   void CreateGLResources();
